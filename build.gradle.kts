@@ -22,6 +22,11 @@ repositories {
 }
 
 dependencies {
+    implementation("org.litote.kmongo:kmongo:5.2.0")
+    implementation("org.mindrot:jbcrypt:0.4")
+    implementation("io.ktor:ktor-server-auth-jwt")
+    implementation("org.litote.kmongo:kmongo-coroutine:4.3.0")
+
     implementation("io.ktor:ktor-server-core")
     implementation("io.ktor:ktor-server-content-negotiation")
     implementation("io.ktor:ktor-serialization-kotlinx-json")
