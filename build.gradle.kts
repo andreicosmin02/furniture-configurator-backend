@@ -25,7 +25,7 @@ dependencies {
     implementation("org.litote.kmongo:kmongo:5.2.0")
     implementation("org.mindrot:jbcrypt:0.4")
     implementation("io.ktor:ktor-server-auth-jwt")
-    implementation("org.litote.kmongo:kmongo-coroutine:4.3.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.6.2")
 
     implementation("io.ktor:ktor-server-core")
     implementation("io.ktor:ktor-server-content-negotiation")

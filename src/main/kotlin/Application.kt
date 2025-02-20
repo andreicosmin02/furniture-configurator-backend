@@ -11,11 +11,11 @@ fun main(args: Array<String>) {
 }
 
 fun Application.module() {
-    configureSerialization()
-    configureSecurity()
-    configureRouting()
 
+    configureSecurity()
     DatabaseFactory.init()
+    configureRouting()
+    configureSerialization()
 
     monitor.subscribe(ApplicationStopped) {
         DatabaseFactory.close()

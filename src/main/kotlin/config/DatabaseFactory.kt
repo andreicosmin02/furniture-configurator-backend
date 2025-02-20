@@ -6,6 +6,11 @@ import com.mongodb.client.MongoClients
 import com.mongodb.client.MongoDatabase
 import org.bson.BsonDocument
 import org.bson.BsonInt64
+import org.bson.codecs.configuration.CodecProvider
+import org.bson.codecs.configuration.CodecRegistries.fromProviders
+import org.bson.codecs.configuration.CodecRegistries.fromRegistries
+import org.bson.codecs.configuration.CodecRegistry
+import org.bson.codecs.pojo.PojoCodecProvider
 
 
 object DatabaseFactory {
@@ -18,7 +23,15 @@ object DatabaseFactory {
         val serverApi = ServerApi.builder()
             .version(ServerApiVersion.V1)
             .build()
+
+        // Can't find a codec for CodecCacheKey{clazz=class com.example.models.User, types=null}.
+        // Solve:
+        val pojoCodecProvider: CodecProvider = PojoCodecProvider.builder().automatic(true).build()
+        val pojoCodecRegistry: CodecRegistry =
+            fromRegistries(MongoClientSettings.getDefaultCodecRegistry(), fromProviders(pojoCodecProvider))
+
         val settings = MongoClientSettings.builder()
+            .codecRegistry(pojoCodecRegistry)
             .applyConnectionString(ConnectionString(mongodbDatabaseUrl))
             .serverApi(serverApi)
             .build()
