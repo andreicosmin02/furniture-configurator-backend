@@ -24,8 +24,6 @@ object DatabaseFactory {
             .version(ServerApiVersion.V1)
             .build()
 
-        // Can't find a codec for CodecCacheKey{clazz=class com.example.models.User, types=null}.
-        // Solve:
         val pojoCodecProvider: CodecProvider = PojoCodecProvider.builder().automatic(true).build()
         val pojoCodecRegistry: CodecRegistry =
             fromRegistries(MongoClientSettings.getDefaultCodecRegistry(), fromProviders(pojoCodecProvider))

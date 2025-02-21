@@ -17,7 +17,7 @@ fun Route.usersRoutes() {
             try {
                 val user = call.receive<User>()
                 val salt = BCrypt.gensalt()
-                val hashedPassword = BCrypt.hashpw(user.password, BCrypt.gensalt())
+                val hashedPassword = BCrypt.hashpw(user.password, salt)
                 val newUser = user.copy(
                     password = hashedPassword,
                     salt = salt,
